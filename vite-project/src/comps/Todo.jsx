@@ -1,14 +1,23 @@
-function Todo({data, onRemove }){
-    console.log(data.id)
+import { useState } from "react"
+
+function Todo({data , onRemove }){
+
+    const [inputText, setInputText] = useState(data.text)
+    const onEdit = ()=>{
+        setInputText(prompt("Edit text"))
+    }
+
+
     return(
-        <div className="my-2" key={data.id}>
-            <div className="flex justify-between">
-                <p >
-                    {data.text}
-                </p>
+        <div className="mt-2">
+            <div className="flex flex-row justify-between">
+                <h1>
+                    {inputText}
+                </h1>
                 <div>
 
-                <button  onClick={() => onRemove(data.id)} className=" rounded bg-teal-200 border-slate-600	 border mx-1 px-2 w-17">remove</button>
+                <button className="m-1" onClick={onEdit}>edit</button>
+                <button className="m-1"  onClick={() => {onRemove(data.createdAt); console.log(data.createdAt)}}>Remove</button>
                 </div>
             </div>
         </div>
@@ -17,3 +26,4 @@ function Todo({data, onRemove }){
 
 
 export default Todo
+
